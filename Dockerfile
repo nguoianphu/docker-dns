@@ -78,7 +78,8 @@ RUN set -x \
  && addgroup bind \
  && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
  && mkdir -p ${BIND_DIR} \
- && curl -L -O https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz
+ # && ftp://ftp.isc.org/isc/bind9/9.11.0/bind-9.11.0.tar.gz.asc
+ && curl -L -O --insecure https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz
  && tar xzf bind-${BIND_VERSION}.tar.gz  -C ${BIND_DIR} --strip-components=1 \
  && rm -rf bind-${BIND_VERSION}.tar.gz \
  && chown -R elk:elk ${BIND_DIR} \
