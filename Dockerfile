@@ -14,7 +14,7 @@ MAINTAINER Tuan Vo <vohungtuan@gmail.com>
 
 
 ####################################################
-########               GCC               ###########
+########               GCC   and tools          ###########
 ####################################################
 # The GNU Compiler Collection 5.3.0-r0
 
@@ -22,6 +22,9 @@ RUN set -x \
     && apk add --no-cache \
         bash \
         gcc \
+        curl \
+        tar \
+        openssl \
         # build-essential \
         # alpine-sdk \
     && rm -rf /var/cache/apk/*
@@ -44,7 +47,6 @@ RUN set -x \
     && apk add --no-cache --virtual .gosu-deps \
         dpkg \
         gnupg \
-        openssl \
     && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
     && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
     && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc" \
