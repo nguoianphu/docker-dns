@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - echo "Build local image"
+  - docker build -t dns .
+  - docker images
+  - echo "Run local image"  
+  - docker run -d -p 53:53 --name my-dns dns
+  - docker ps -a
+  - docker logs my-dns
+  - docker exec -it my-dns named -v
+  - docker exec -it my-dns dig googole.com IN A
+  - docker stop my-dns
+  - echo "Testing public image on Docker Hub"
+  - docker run -d -p 53:53 --name my-dns nguoianphu/docker-dns
+  - docker ps -a
+  - docker logs my-dns
+  - docker exec -it my-dns named -v
+  - docker exec -it my-dns dig googole.com IN A
+  - docker stop my-dns
+  
