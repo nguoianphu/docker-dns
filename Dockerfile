@@ -86,8 +86,10 @@ RUN set -x \
  && tar xzf bind-${BIND_VERSION}.tar.gz  -C ${BIND_DIR} --strip-components=1 \
  && rm -rf bind-${BIND_VERSION}.tar.gz \
  && chown -R bind:bind ${BIND_DIR} \
+ && chmod +x ${BIND_DIR}/* \
  && cd ${BIND_DIR} \
- && ./configure \
+ # && ./configure \
+ && gosu bind ./configure \
  && make clean \
  && make \
  && make test \
