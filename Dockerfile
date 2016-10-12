@@ -76,7 +76,7 @@ ENV BIND_DIR /opt/bind
 
 RUN set -x \
  && apk add --no-cache wget \
- && rm -rf /var/cache/apk/*
+ && rm -rf /var/cache/apk/* \
  && addgroup bind \
  && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
  && mkdir -p ${BIND_DIR} \
