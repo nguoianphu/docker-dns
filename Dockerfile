@@ -25,6 +25,7 @@ RUN set -x \
         curl \
         tar \
         openssl \
+		wget \
         # build-essential \
         # alpine-sdk \
     && rm -rf /var/cache/apk/*
