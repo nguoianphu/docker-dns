@@ -25,8 +25,6 @@ RUN set -x \
         curl \
         tar \
         openssl \
-        # build-essential \
-        # libc6-dev \
         alpine-sdk \
     && rm -rf /var/cache/apk/*
 
@@ -67,7 +65,7 @@ RUN set -x \
 
 ENV BIND_VERSION 9-11-0
 
-ENV BUILD_OPTIONS "--with-openssl= "
+ENV BUILD_OPTIONS "--without-openssl"
 
 # ENV OPEN_SSL 9.11.0
 # ENV KERBEROS 9.11.0
@@ -90,7 +88,7 @@ RUN set -x \
  && chmod +x ${BIND_DIR}/* \
  && cd ${BIND_DIR} \
  # && ./configure \
- && gosu bind ./configure \
+ && gosu bind ./configure ${BUILD_OPTIONS} \
  && make clean \
  && make \
  && make test \
