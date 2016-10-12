@@ -85,7 +85,7 @@ RUN set -x \
  && wget --no-check-certificate -O bind-${BIND_VERSION}.tar.gz https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz \
  && tar xzf bind-${BIND_VERSION}.tar.gz  -C ${BIND_DIR} --strip-components=1 \
  && rm -rf bind-${BIND_VERSION}.tar.gz \
- && chown -R elk:elk ${BIND_DIR} \
+ && chown -R bind:bind ${BIND_DIR} \
  && ./${BIND_DIR}/configure \
  && make clean \
  && make \
