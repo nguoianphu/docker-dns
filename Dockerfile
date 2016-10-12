@@ -25,9 +25,9 @@ RUN set -x \
         curl \
         tar \
         openssl \
-        build-essential \
+        # build-essential \
         # libc6-dev \
-        # alpine-sdk \
+        alpine-sdk \
     && rm -rf /var/cache/apk/*
 
 ###############################################################################
