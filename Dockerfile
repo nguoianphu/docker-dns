@@ -86,11 +86,13 @@ RUN set -x \
  && tar xzf bind-${BIND_VERSION}.tar.gz  -C ${BIND_DIR} --strip-components=1 \
  && rm -rf bind-${BIND_VERSION}.tar.gz \
  && chown -R bind:bind ${BIND_DIR} \
- && ./${BIND_DIR}/configure \
+ && cd ${BIND_DIR} \
+ && ./configure \
  && make clean \
  && make \
  && make test \
- && make install
+ && make install \
+ && rm -rf ${BIND_DIR}
 
 # BIND is at /usr/local/
 
@@ -98,7 +100,7 @@ RUN set -x \
 #                                   START
 ###############################################################################
 
-ENV PATH ${ES_HOME}/bin:$PATH
+# ENV PATH ${BIND_DIR}/bin:$PATH
 
 
 # 53 DNS port
