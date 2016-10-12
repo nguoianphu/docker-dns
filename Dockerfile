@@ -25,7 +25,6 @@ RUN set -x \
         curl \
         tar \
         openssl \
-		wget \
         # build-essential \
         # alpine-sdk \
     && rm -rf /var/cache/apk/*
@@ -76,6 +75,8 @@ ENV BUILD_OPTIONS "--with-openssl= "
 ENV BIND_DIR /opt/bind
 
 RUN set -x \
+ && apk add --no-cache wget \
+ && rm -rf /var/cache/apk/*
  && addgroup bind \
  && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
  && mkdir -p ${BIND_DIR} \
