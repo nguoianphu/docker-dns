@@ -124,8 +124,7 @@ RUN set -x \
 # named is at /usr/local/sbin
 
 # Copy named.conf
-COPY bind /etc/
-RUN ls -la etc/bind/
+COPY bind/* /etc/bind/
 
 ###############################################################################
 #                                   START
