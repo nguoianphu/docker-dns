@@ -24,10 +24,14 @@ RUN set -x \
         gcc \
         curl \
         tar \
-        openssl \
         alpine-sdk \
-        perl \
         linux-headers \
+		bsd-compat-headers \
+		libxml2-dev \
+        openssl \
+		openssl-dev \
+        perl \
+		libcap-dev perl \
     && rm -rf /var/cache/apk/*
 
 ###############################################################################
@@ -78,10 +82,9 @@ ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-rrl \
                    --enable-fetchlimit \
                    --with-readline=no \
-                   --without-openssl"
-                   # --with-gssapi=$krb_dir \
-                   # --with-libxml2=$libxml2_dir \                   
-                   # --with-openssl=$openssl_dir \                   
+                   --with-openssl \
+                   --with-libxml2"      
+				   # --with-gssapi=$krb_dir \
                    # --with-idn=$idnlib_dir"
 
 # ENV OPEN_SSL 9.11.0
@@ -93,19 +96,19 @@ ENV BIND_DIR /opt/bind
 RUN set -x \
  && apk add --no-cache wget \
  && rm -rf /var/cache/apk/* \
- && addgroup bind \
- && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
+ # && addgroup bind \
+ # && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
  && mkdir -p ${BIND_DIR} \
  # && ftp://ftp.isc.org/isc/bind9/9.11.0/bind-9.11.0.tar.gz.asc
  # && curl -L -O --insecure https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz \
  && wget --no-check-certificate -O bind-${BIND_VERSION}.tar.gz https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz \
  && tar xzf bind-${BIND_VERSION}.tar.gz  -C ${BIND_DIR} --strip-components=1 \
  && rm -rf bind-${BIND_VERSION}.tar.gz \
- && chown -R bind:bind ${BIND_DIR} \
+ # && chown -R bind:bind ${BIND_DIR} \
  && chmod +x ${BIND_DIR}/* \
  && cd ${BIND_DIR} \
  # && ./configure \
- && gosu bind ./configure ${BUILD_OPTIONS} \
+ && ./configure ${BUILD_OPTIONS} \
  && make clean \
  && make \
  # && make test \
