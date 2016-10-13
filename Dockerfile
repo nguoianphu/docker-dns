@@ -27,6 +27,7 @@ RUN set -x \
         openssl \
         alpine-sdk \
         perl \
+        linux-headers \
     && rm -rf /var/cache/apk/*
 
 ###############################################################################
@@ -66,7 +67,21 @@ RUN set -x \
 
 ENV BIND_VERSION 9-9-9-p3
 
-ENV BUILD_OPTIONS "--without-openssl"
+ENV BUILD_OPTIONS "--enable-largefile \
+                   --enable-fixed-rrset \
+                   --enable-filter-aaaa \
+                   --enable-ipv6 \
+                   --enable-threads \
+                   --enable-backtrace \
+                   --enable-rpz-nsip \
+                   --enable-rpz-nsdname \
+                   --enable-rrl \
+                   --enable-fetchlimit \
+                   --with-readline=no"
+                   # --with-gssapi=$krb_dir \
+                   # --with-libxml2=$libxml2_dir \                   
+                   # --with-openssl=$openssl_dir \                   
+                   # --with-idn=$idnlib_dir"
 
 # ENV OPEN_SSL 9.11.0
 # ENV KERBEROS 9.11.0
