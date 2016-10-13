@@ -125,6 +125,7 @@ RUN set -x \
 
 # Copy named.conf
 COPY bind /etc/
+RUN ls -la etc/bind/
 
 ###############################################################################
 #                                   START
