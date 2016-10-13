@@ -77,7 +77,8 @@ ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-rpz-nsdname \
                    --enable-rrl \
                    --enable-fetchlimit \
-                   --with-readline=no"
+                   --with-readline=no \
+                   --without-openssl"
                    # --with-gssapi=$krb_dir \
                    # --with-libxml2=$libxml2_dir \                   
                    # --with-openssl=$openssl_dir \                   
