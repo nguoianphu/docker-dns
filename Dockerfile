@@ -81,7 +81,13 @@ ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-rpz-nsdname \
                    --enable-rrl \
                    --enable-fetchlimit \
+				   --enable-linux-caps \
+				   --enable-shared \
+				   --enable-static \
                    --with-readline=no \
+				   --with-libtool \
+				   --with-randomdev=/dev/random \
+				   --sysconfdir=/etc/bind \
                    --with-openssl \
                    --with-libxml2"      
 				   # --with-gssapi=$krb_dir \
@@ -99,7 +105,7 @@ RUN set -x \
  # && addgroup bind \
  # && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
  && mkdir -p ${BIND_DIR} \
- # && ftp://ftp.isc.org/isc/bind9/9.11.0/bind-9.11.0.tar.gz.asc
+ # && http://ftp.isc.org/isc/bind9/${_ver}/bind-${_ver}.tar.gz
  # && curl -L -O --insecure https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz \
  && wget --no-check-certificate -O bind-${BIND_VERSION}.tar.gz https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz \
  && tar xzf bind-${BIND_VERSION}.tar.gz  -C ${BIND_DIR} --strip-components=1 \
@@ -118,7 +124,7 @@ RUN set -x \
 # named is at /usr/local/sbin
 
 # Copy Readhat named.conf
-COPY named var/
+COPY bind etc/
 
 ###############################################################################
 #                                   START
