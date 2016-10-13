@@ -1,7 +1,7 @@
 # ISC BIND DNS servers
 ISC BIND DNS servers - Docker images.
 
-[![Build Status](https://travis-ci.org/nguoianphu/docker-dns.svg?branch=master)](https://travis-ci.org/nguoianphu/docker-dns) [![Image size](https://images.microbadger.com/badges/image/nguoianphu/docker-dns:master.svg)](https://microbadger.com/images/nguoianphu/docker-dns "Get your own image badge on microbadger.com")
+[![Build Status](https://travis-ci.org/nguoianphu/docker-dns.svg?branch=9.9)](https://travis-ci.org/nguoianphu/docker-dns) [![Image size](https://images.microbadger.com/badges/image/nguoianphu/docker-dns:9.9.svg)](https://microbadger.com/images/nguoianphu/docker-dns "Get your own image badge on microbadger.com")
 
 
 ## BIND DNS 9.11.x

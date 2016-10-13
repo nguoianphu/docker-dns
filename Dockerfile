@@ -64,7 +64,7 @@ RUN set -x \
 #########              BIND              ###########
 ####################################################
 
-ENV BIND_VERSION 9-11-0
+ENV BIND_VERSION 9-9-9-p3
 
 ENV BUILD_OPTIONS "--without-openssl"
 
