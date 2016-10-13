@@ -81,16 +81,16 @@ ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-rpz-nsdname \
                    --enable-rrl \
                    --enable-fetchlimit \
-				   --enable-linux-caps \
-				   --enable-shared \
-				   --enable-static \
+	           --enable-linux-caps \
+		   --enable-shared \
+		   --enable-static \
                    --with-readline=no \
-				   --with-libtool \
-				   --with-randomdev=/dev/random \
-				   --sysconfdir=/etc/bind \
+		   --with-libtool \
+		   --with-randomdev=/dev/random \
+		   --sysconfdir=/etc/bind \
                    --with-openssl \
                    --with-libxml2"      
-				   # --with-gssapi=$krb_dir \
+		   # --with-gssapi=$krb_dir \
                    # --with-idn=$idnlib_dir"
 
 # ENV OPEN_SSL 9.11.0
@@ -119,7 +119,10 @@ RUN set -x \
  && make \
  # && make test \
  && make install \
- && rm -rf ${BIND_DIR}
+ && rm -rf ${BIND_DIR} \
+ && mkdir -p /etc/bind/dynamic \
+ && mkdir -p /etc/bind/data \
+ && touch /etc/bind/data/named.run
 
 # named is at /usr/local/sbin
 
@@ -140,4 +143,4 @@ COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
  
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
-CMD [""]
+CMD ["named", "-c", "/etc/bind/named.conf"]
