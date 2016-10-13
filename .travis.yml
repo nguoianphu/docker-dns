@@ -13,12 +13,12 @@ script:
   - docker logs my-dns
   - docker exec -it my-dns named -v
   - docker exec -it my-dns dig googole.com IN A
-  - docker stop my-dns
+  - docker stop my-dns  
   - echo "Testing public image on Docker Hub"
-  - docker run -d --name my-dns nguoianphu/docker-dns:9.9
+  - docker run -d --name nguoianphu-dns nguoianphu/docker-dns:9.9
   - docker ps -a
-  - docker logs my-dns
-  - docker exec -it my-dns named -v
-  - docker exec -it my-dns dig googole.com IN A
-  - docker stop my-dns
+  - docker logs nguoianphu-dns
+  - docker exec -it nguoianphu-dns named -v
+  - docker exec -it nguoianphu-dns dig googole.com IN A
+  - docker stop nguoianphu-dns
   

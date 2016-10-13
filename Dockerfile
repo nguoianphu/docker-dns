@@ -112,7 +112,10 @@ RUN set -x \
  && make install \
  && rm -rf ${BIND_DIR}
 
-# BIND is at /usr/local/
+# named is at /usr/local/sbin
+
+# Copy Readhat named.conf
+COPY named var/
 
 ###############################################################################
 #                                   START
