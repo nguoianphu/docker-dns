@@ -123,9 +123,8 @@ RUN set -x \
 
 # named is at /usr/local/sbin
 
-# Copy Readhat named.conf
-COPY bind etc
-RUN ls -la etc/bind/
+# Copy named.conf
+COPY bind /etc/
 
 ###############################################################################
 #                                   START
