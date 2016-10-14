@@ -9,6 +9,7 @@ script:
   - echo "Run local image"
   - docker run -d --name my-dns dns
   # - docker run -d -p 53:53 --name my-dns dns
+  - sleep 15
   - docker ps -a
   - docker logs my-dns
   - docker exec -it my-dns named -v
@@ -17,6 +18,7 @@ script:
   - docker stop my-dns  
   - echo "Testing public image on Docker Hub"
   - docker run -d --name nguoianphu-dns nguoianphu/docker-dns:9.9
+  - sleep 15
   - docker ps -a
   - docker logs nguoianphu-dns
   - docker exec -it nguoianphu-dns named -v
