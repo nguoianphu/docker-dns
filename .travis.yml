@@ -14,6 +14,7 @@ script:
   - docker logs my-dns
   - docker exec -it my-dns named -v
   - docker exec -it my-dns dig googole.com IN A
+  - docker exec -it my-dns cat /etc/bind/data/named.run  
   - docker exec -it my-dns rndc status
   - docker stop my-dns  
   - echo "Testing public image on Docker Hub"
@@ -23,6 +24,7 @@ script:
   - docker logs nguoianphu-dns
   - docker exec -it nguoianphu-dns named -v
   - docker exec -it nguoianphu-dns dig googole.com IN A
+  - docker exec -it nguoianphu-dns cat /etc/bind/data/named.run
   - docker exec -it nguoianphu-dns rndc status
   - docker stop nguoianphu-dns
   
