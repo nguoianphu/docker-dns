@@ -8,7 +8,7 @@ set -xe
 if [[ "$1" == "" ]]; then
     echo "Starting BIND"
     # exec gosu bind named
-    exec named -c /etc/bind/named.conf
+    exec named -c /etc/bind/named.conf -g
 else
     # Else allow the user to run arbitrarily commands like bash
     exec "$@"
