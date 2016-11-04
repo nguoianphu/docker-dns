@@ -18,7 +18,7 @@ script:
   - docker exec -it my-dns rndc status
   - docker stop my-dns  
   - echo "Testing public image on Docker Hub"
-  - docker run -d --name nguoianphu-dns nguoianphu/docker-dns:9.9
+  - docker run -d --name nguoianphu-dns nguoianphu/docker-dns:9.10
   - sleep 15
   - docker ps -a
   - docker logs nguoianphu-dns

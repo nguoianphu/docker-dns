@@ -31,7 +31,8 @@ RUN set -x \
         openssl \
 		openssl-dev \
         perl \
-		libcap-dev perl \
+		libcap-dev \
+        krb5-dev \
     && rm -rf /var/cache/apk/*
 
 ###############################################################################
@@ -81,16 +82,16 @@ ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-rpz-nsdname \
                    --enable-rrl \
                    --enable-fetchlimit \
-	           --enable-linux-caps \
-		   --enable-shared \
-		   --enable-static \
+                   --enable-linux-caps \
+                   --enable-shared \
+                   --enable-static \
                    --with-readline=no \
-		   --with-libtool \
-		   --with-randomdev=/dev/random \
-		   --sysconfdir=/etc/bind \
+                   --with-libtool \
+                   --with-randomdev=/dev/random \
+                   --sysconfdir=/etc/bind \
                    --with-openssl \
-                   --with-libxml2"      
-		   # --with-gssapi=$krb_dir \
+                   --with-libxml2 \      
+                   --with-gssapi"
                    # --with-idn=$idnlib_dir"
 
 # ENV OPEN_SSL 9.11.0
