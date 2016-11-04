@@ -69,7 +69,7 @@ RUN set -x \
 #########              BIND              ###########
 ####################################################
 
-ENV BIND_VERSION 9-9-10-p4
+ENV BIND_VERSION 9-10-4-p4
 
 ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-fixed-rrset \
