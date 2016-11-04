@@ -27,6 +27,7 @@ RUN set -x \
         openssl \
         alpine-sdk \
         perl \
+        linux-headers \
     && rm -rf /var/cache/apk/*
 
 ###############################################################################
