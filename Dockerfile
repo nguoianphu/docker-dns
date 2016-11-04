@@ -93,7 +93,7 @@ RUN set -x \
  && gosu bind ./configure ${BUILD_OPTIONS} \
  && make clean \
  && make \
- && make test \
+ # && make test \
  && make install \
  && rm -rf ${BIND_DIR}
 
