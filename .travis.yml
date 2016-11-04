@@ -27,4 +27,3 @@ script:
   - docker exec -it nguoianphu-dns cat /etc/bind/data/named.run
   - docker exec -it nguoianphu-dns rndc status
   - docker stop nguoianphu-dns
-  

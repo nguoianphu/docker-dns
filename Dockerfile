@@ -26,14 +26,13 @@ RUN set -x \
         tar \
         alpine-sdk \
         linux-headers \
-		bsd-compat-headers \
 		libxml2-dev \
         openssl \
 		openssl-dev \
         perl \
 		libcap-dev \
         krb5-dev \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/*    
 
 ###############################################################################
 #                                INSTALLATION
@@ -71,6 +70,8 @@ RUN set -x \
 ####################################################
 
 ENV BIND_VERSION 9-10-4-p4
+
+ENV CFLAGS "-O2 -m64"
 
 ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-fixed-rrset \
