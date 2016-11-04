@@ -25,9 +25,14 @@ RUN set -x \
         curl \
         tar \
         openssl \
+        openssl-dev \
         alpine-sdk \
         perl \
         linux-headers \
+        libxml2 \
+        libxml2-dev \
+        krb5 \
+        krb5-dev \
     && rm -rf /var/cache/apk/*
 
 ###############################################################################
@@ -67,7 +72,14 @@ RUN set -x \
 
 ENV BIND_VERSION 9-11-0-p1
 
-ENV BUILD_OPTIONS "--without-openssl"
+ENV BUILD_OPTIONS "--with-openssl \
+                   --with-libxml2 \
+                   --with-gssapi \
+                   --enable-largefile \
+                   --enable-fixed-rrset \
+                   --enable-filter-aaaa \
+                   --enable-threads \
+                   --enable-ipv6"
 
 # ENV OPEN_SSL 9.11.0
 # ENV KERBEROS 9.11.0
