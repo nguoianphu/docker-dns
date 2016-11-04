@@ -17,23 +17,22 @@ MAINTAINER Tuan Vo <vohungtuan@gmail.com>
 ########               GCC   and tools          ###########
 ####################################################
 # The GNU Compiler Collection 5.3.0-r0
-
+ 
 RUN set -x \
     && apk add --no-cache \
         bash \
         gcc \
         curl \
         tar \
-        openssl \
-        openssl-dev \
         alpine-sdk \
-        perl \
         linux-headers \
-        libxml2 \
-        libxml2-dev \
-        krb5 \
+		libxml2-dev \
+        openssl \
+		openssl-dev \
+        perl \
+		libcap-dev \
         krb5-dev \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/*    
 
 ###############################################################################
 #                                INSTALLATION

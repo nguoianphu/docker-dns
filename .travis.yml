@@ -6,18 +6,24 @@ script:
   - echo "Build local image"
   - docker build -t dns .
   - docker images
-  - echo "Run local image"  
-  - docker run -d -p 53:53 --name my-dns dns
+  - echo "Run local image"
+  - docker run -d --name my-dns dns
+  # - docker run -d -p 53:53 --name my-dns dns
+  - sleep 15
   - docker ps -a
   - docker logs my-dns
   - docker exec -it my-dns named -v
   - docker exec -it my-dns dig nguoianphu.com IN A
-  - docker stop my-dns
+  - docker exec -it my-dns cat /etc/bind/data/named.run  
+  - docker exec -it my-dns rndc status
+  - docker stop my-dns  
   - echo "Testing public image on Docker Hub"
-  - docker run -d -p 53:53 --name my-dns nguoianphu/docker-dns
+  - docker run -d --name nguoianphu-dns nguoianphu/docker-dns:9.9
+  - sleep 15
   - docker ps -a
-  - docker logs my-dns
-  - docker exec -it my-dns named -v
-  - docker exec -it my-dns dig nguoianphu.com IN A
-  - docker stop my-dns
-  
+  - docker logs nguoianphu-dns
+  - docker exec -it nguoianphu-dns named -v
+  - docker exec -it nguoianphu-dns dig nguoianphu.com IN A
+  - docker exec -it nguoianphu-dns cat /etc/bind/data/named.run
+  - docker exec -it nguoianphu-dns rndc status
+  - docker stop nguoianphu-dns
