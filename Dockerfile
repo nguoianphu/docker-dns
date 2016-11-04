@@ -71,6 +71,8 @@ RUN set -x \
 
 ENV BIND_VERSION 9-11-0-p1
 
+ENV CFLAGS "-O2 -m64"
+
 ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-fixed-rrset \
                    --enable-filter-aaaa \
