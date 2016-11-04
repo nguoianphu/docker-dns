@@ -71,14 +71,27 @@ RUN set -x \
 
 ENV BIND_VERSION 9-11-0-p1
 
-ENV BUILD_OPTIONS "--with-openssl \
-                   --with-libxml2 \
-                   --with-gssapi \
-                   --enable-largefile \
+ENV BUILD_OPTIONS "--enable-largefile \
                    --enable-fixed-rrset \
                    --enable-filter-aaaa \
+                   --enable-ipv6 \
                    --enable-threads \
-                   --enable-ipv6"
+                   --enable-backtrace \
+                   --enable-rpz-nsip \
+                   --enable-rpz-nsdname \
+                   --enable-rrl \
+                   --enable-fetchlimit \
+                   --enable-linux-caps \
+                   --enable-shared \
+                   --enable-static \
+                   --with-readline=no \
+                   --with-libtool \
+                   --with-randomdev=/dev/random \
+                   --sysconfdir=/etc/bind \
+                   --with-openssl \
+                   --with-libxml2 \      
+                   --with-gssapi"
+                   # --with-idn=$idnlib_dir"
 
 # ENV OPEN_SSL 9.11.0
 # ENV KERBEROS 9.11.0
@@ -89,26 +102,32 @@ ENV BIND_DIR /opt/bind
 RUN set -x \
  && apk add --no-cache wget \
  && rm -rf /var/cache/apk/* \
- && addgroup bind \
- && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
+ # && addgroup bind \
+ # && adduser -D -S bind -s /bin/bash -h ${BIND_DIR} -g "BIND service user" -G bind \
  && mkdir -p ${BIND_DIR} \
- # && ftp://ftp.isc.org/isc/bind9/9.11.0/bind-9.11.0.tar.gz.asc
+ # && http://ftp.isc.org/isc/bind9/${_ver}/bind-${_ver}.tar.gz
  # && curl -L -O --insecure https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz \
  && wget --no-check-certificate -O bind-${BIND_VERSION}.tar.gz https://www.isc.org/downloads/file/bind-${BIND_VERSION}/?version=tar-gz \
  && tar xzf bind-${BIND_VERSION}.tar.gz  -C ${BIND_DIR} --strip-components=1 \
  && rm -rf bind-${BIND_VERSION}.tar.gz \
- && chown -R bind:bind ${BIND_DIR} \
+ # && chown -R bind:bind ${BIND_DIR} \
  && chmod +x ${BIND_DIR}/* \
  && cd ${BIND_DIR} \
  # && ./configure \
- && gosu bind ./configure ${BUILD_OPTIONS} \
+ && ./configure ${BUILD_OPTIONS} \
  && make clean \
  && make \
  # && make test \
  && make install \
- && rm -rf ${BIND_DIR}
+ && rm -rf ${BIND_DIR} \
+ && mkdir -p /etc/bind/dynamic \
+ && mkdir -p /etc/bind/data \
+ && touch /etc/bind/data/named.run
 
-# BIND is at /usr/local/
+# named is at /usr/local/sbin
+
+# Copy named.conf
+COPY bind/* /etc/bind/
 
 ###############################################################################
 #                                   START
