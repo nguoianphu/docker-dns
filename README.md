@@ -6,7 +6,7 @@ ISC BIND DNS servers - Docker images.
 
 ## BIND DNS 9.11.x
 - Branch **master**
-- BIND version **9.11.0**
+- BIND version **9.11.0-P1**
 
 #### Build and run
     
@@ -20,7 +20,7 @@ ISC BIND DNS servers - Docker images.
 
 ## BIND DNS 9.10.x
 - Branch **9.10**
-- BIND version **9.10.4-P3**
+- BIND version **9.10.4-P4**
 
 #### Build and run
     
@@ -33,7 +33,7 @@ ISC BIND DNS servers - Docker images.
 
 ## BIND DNS 9.9.x
 - Branch **9.9**
-- BIND version **9.9.9-P3**
+- BIND version **9.9.9-P4**
 
 #### Build and run
     
